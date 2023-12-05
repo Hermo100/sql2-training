@@ -1,0 +1,11 @@
+INSERT INTO Customers (CustomerName,ContactName,Address,City,PostalCode,Country)
+VALUES ('herman','orash','234','nairobi','0100','kenya');
+SELECT * FROM Customers;
+
+UPDATE customers
+SET CustomerName='herman',ContactName='orash',Address='234',City='nairobi',PostalCode='0100',Country='kenya'
+WHERE CustomerID='92';
+
+INSERT INTO orders (CustomerID,EmployeeID,OrderDate,ShipperID)
+VALUES ('92','4','2/12/2023','2');
+SELECT * FROM orders;
