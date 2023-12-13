@@ -1,0 +1,55 @@
+
+QUESTION 3
+SELECT products.productname,shippers.shippername,
+FROM Orders AS Ord
+inner JOIN Orderdetails AS orderdet
+ON ordt.orderid=Ord.orderid
+inner JOIN  products AS prod
+ON pr.productid=ordt.productid
+inner JOIN shippers AS ship
+ON shp.shipperid=ord.shipperid
+
+QUESTION 4
+SELECT shippers.shippername, count(products.productid) as total_products_supplied
+FROM orders
+inner JOIN orderdetails
+ON orderdetails.orderid=orders.orderid
+inner JOIN products
+ON products.productid=orderdetails.productid
+inner JOIN Shippers
+ON Shippers.Shipperid=orders.Shipperid
+GROUP BY shippers.shippername;
+
+QUESTION 5
+SELECT customers.customername
+FROM customers
+WHERE customers.customername NOT LIKE '%son%'
+
+QUESTION 6
+SELECT  sum(orderdetails.quantity*products.price),orders.orderdate
+FROM orders
+inner JOIN orderdetails
+ON orderdetails.orderid=orders.orderid
+inner JOIN products
+ON products.productid=orderdetails.productid
+WHERE orders.orderdate like '%1997-%'
+
+
+QUESTION 8
+SELECT suppliers.suppliername,sum(ordt.quantity) AS totalsupplied
+FROM suppliers
+inner JOIN products
+ON products.supplierid=products.supplierid
+inner JOIN orderdetails AS ordt
+ON ordert.productid=products.productid
+GROUP BY suppliers.suppliername
+ODER BY total 
+DESC
+LIMIT 1
+
+QUESTION 9
+SELECT pr.productname,sum(ordt.quantity*pr.price)
+AS productstotal
+FROM orderdetails as ordt
+JOIN products as pr
+ON products.productid=ordt.productsid
