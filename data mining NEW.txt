@@ -1,0 +1,98 @@
+QUESTION2
+SELECT customers.Customername,customers.City,customers.Address,customers.PostalCode, orders.OrderDate,orders.orderid,
+shippers.ShipperName,products.productname,orderdetails.quantity
+FROM ((((Orders inner JOIN Customers ON orders.CustomerID=customers.CustomerID)
+inner JOIN Shippers ON orders.ShipperID=shippers.ShipperID)
+inner JOIN Orderdetails ON orderdetails.orderID=orders.orderID)
+inner JOIN Products ON products.productID=orderdetails.productID);
+
+
+
+QUESTION 3
+SELECT products.productname,(orderdetails.quantity*products.price),orders.orderdate,shippers.shippername
+FROM((( orderdetails 
+inner JOIN products on orderdetails.productid=products.productid)
+inner JOIN orders on orderdetails.orderid=orders.orderid)
+inner JOIN shippers on shippers.shipperid=orders.shipperid);
+
+QUESTION 4
+SELECT shippers.shippername, count(products.productid)
+FROM (((orders
+inner JOIN orderdetails
+ON orderdetails.orderid=orders.orderid)
+inner JOIN products
+ON products.productid=orderdetails.productid)
+inner JOIN Shippers
+ON Shippers.Shipperid=orders.Shipperid)
+GROUP BY shippers.shippername;
+
+QUESTION 5
+SELECT customers.customername
+FROM customers
+WHERE customers.customername NOT LIKE '%son%'
+
+
+QUESTION 6
+SELECT sum(orderdetails.quantity*products.price) ,orders.orderdate
+FROM(( orderdetails 
+inner JOIN products on orderdetails.productid=products.productid)
+inner JOIN orders on orderdetails.orderid=orders.orderid)
+WHERE orders.orderdate  BETWEEN '1996/10/01' AND '1996/10/30'
+group by orders.orderdate;
+
+QUESTION 7
+SELECT customers.customername,sum(orderdetails.quantity*products.price) as total
+FROM (((customers 
+inner JOIN orders 
+ON orders.customerid=customers.customerid)
+inner JOIN orderdetails 
+ON orderdetails.orderid=orders.orderid)
+inner JOIN products
+ON products.productid=orderdetails.productid)
+group by customername;
+
+
+QUESTION 8
+SELECT suppliers.suppliername,sum(orderdetails.quantity) as total
+FROM ((suppliers
+inner JOIN products
+ON products.supplierid=suppliers.supplierid)
+inner JOIN orderdetails
+ON orderdetails.productid=products.productid)
+
+group by suppliername
+order by total
+DESC
+LIMIT 1
+
+
+QUESTION 9
+SELECT sum(orderdetails.quantity*products.price)
+FROM( orderdetails 
+inner JOIN products on orderdetails.productid=products.productid)
+
+QUESTION10
+
+QUESTION 11
+SELECT orderdate, sum ( orderdetails.quantity*products.price ) AS total
+FROM(( orders
+inner JOIN orderdetails
+ON orderdetails.orderid=orders.orderid)
+inner JOIN products
+ON products.productid=orderdetails.productid)
+GROUP BY orderdate
+
+
+QUESTION 12
+SELECT customers.customername,sum(orderdetails.quantity*products.price) as total
+FROM((( customers
+inner join orders 
+on orders.customerid=customers.customerid)
+inner join orderdetails 
+on orderdetails.orderid=orders.orderid)
+inner join products
+on products.productid=orderdetails.productid)
+group by customername
+
+QUESTION 13
+
